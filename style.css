@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin: 0 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+nav {
+    position: relative;
+}
+
+li {
+    list-style-type: none;
+}
+
+i {
+    position: absolute;
+    background-color: crimson;
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    right: -40px;
+    top: -15px;
+}
+
+.panier {
+    right: -50px;
+    top: 0px;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.btAjouter {
+    width: 150px;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 500px;
+    min-width: 200px;
+    background-color: rgb(211, 211, 211);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+input {
+    border-radius: 10px;
+    padding: 10px;
+    outline: none;
+    border: 2px solid #e7e9eb;
+    width: 250px;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    border: 1px solid rgb(33, 33, 202);
+    outline: 4px solid rgb(171, 207, 251, 0.8);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+form>div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
+
+.message {
+    color: green;
+    background-color: #ccffcc;
+    border: 1px solid green;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.message-error {
+    color: firebrick;
+    background-color: #ffcccc;
+    border: 1px solid firebrick;
+}
+
+form input {
+    margin-left: 10px;
+}
+
+.form-qtt {
+    display: inline;
+}
+
+.button-qtt {
+    width: 20px;
+    height: 20px;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 10px;
+}
+
+.td-clear {
+    text-align: left;
+}
+
+.total {
+    text-align: left;
+}
+
+button {
+    /*beau bouton stylisé*/
+    background-color: firebrick;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 15px;
+}
