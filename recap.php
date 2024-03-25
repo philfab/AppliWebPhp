@@ -1,5 +1,10 @@
 <?php
 session_start();
+$pageTitle = "Récapitulatif des produits";
+$link = "index.php";
+$linkText = "Accueil";
+ob_start();
+
 if (isset($_SESSION['message'])) {
     $message = $_SESSION['message'];
     $isError = strpos($message, 'Erreur') !== false;
@@ -8,30 +13,10 @@ if (isset($_SESSION['message'])) {
     $message = '';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Récapitulatif des produits</title>
-</head>
-
 <body>
     <div class="container">
 
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="index.php">Accueil</a>
-                    </li>
-                </ul>
-                <i class="panier"><?php echo array_sum(array_column(isset($_SESSION['products']) ? $_SESSION['products'] : [], 'qtt')); ?></i>
-            </nav>
 
-        </header>
         <?php
         if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
             echo "<p>Votre panier est vide</p>";
@@ -101,3 +86,8 @@ if (isset($_SESSION['message'])) {
 </body>
 
 </html>
+
+<?php
+$content = ob_get_clean();
+include 'template.php';
+?>
