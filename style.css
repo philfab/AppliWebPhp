@@ -35,7 +35,7 @@ li {
 i {
     position: absolute;
     background-color: crimson;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-style: normal;
     font-weight: bold;
     color: white;
@@ -157,8 +157,7 @@ td {
     text-align: left;
 }
 
-button {
-    /*beau bouton stylisé*/
+.bt-suppr {
     background-color: firebrick;
     color: white;
     border: none;

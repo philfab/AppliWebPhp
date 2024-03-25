@@ -63,8 +63,10 @@ function deleteProduct($id)
 
 function clearProducts()
 {
-    unset($_SESSION['products']);
-    message('Tous les produits ont été supprimés !');
+    if (isset($_SESSION['products'])) {
+        unset($_SESSION['products']);
+        message('Tous les produits ont été supprimés !');
+    }
 }
 
 function updateQtt($id, $delta)

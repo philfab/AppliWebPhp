@@ -57,12 +57,21 @@ if (isset($_SESSION['message'])) {
                 "<td>" . $index . "</td>",
                 "<td>" . $product['name'] . "</td>",
                 "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€", "</td>",
-                "<td>" . $product['qtt'] . "</td>",
+                "<td>" . $product['qtt'] .
+                    "<form class='form-qtt' action='traitement.php?action=down-qtt' method='post'>
+                      <input type='hidden' name='id' value='" . $index . "'>
+                      <button class='button-qtt' type='submit' name='submit'>-</button>
+                   </form>
+                   <form class='form-qtt' action='traitement.php?action=up-qtt' method='post'>
+                     <input type='hidden' name='id' value='" . $index . "'>
+                     <button class='button-qtt'type='submit' name='submit'>+</button>
+                   </form>"  .
+                    "</td>",
                 "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€", "</td>",
                 "<td>
                 <form action='traitement.php?action=delete' method='post'>
                   <input type='hidden' name='id' value='" . $index . "'>
-                  <button type='submit' name='submit'>Supprimer</button>
+                  <button class='bt-suppr' type='submit' name='submit'>Supprimer</button>
                 </form>
             </td>",
                 "</tr>";
@@ -75,7 +84,7 @@ if (isset($_SESSION['message'])) {
             "<td><strong>" . number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€</strong></td>",
             "<td>
              <form action='traitement.php?action=clear' method='post'>
-                <button type='submit' name='submit'>Tout Supprimer</button>
+                <button class='bt-suppr' type='submit' name='submit'>Tout Supprimer</button>
               </form>
             </td>",
             "</tr>",
