@@ -1,6 +1,8 @@
 <?php
+
 session_start();
 if (isset($_POST['submit'])) {
+
 
     $action = $_GET['action'] ?? null; // si action présent sinon null
     $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT); //index du produit : doit etre int
@@ -39,11 +41,40 @@ function addProduct($name, $qtt, $price)
 {
     if ($name && $price && $qtt && preg_match("/^[a-zA-Z0-9\s\-_\.]+$/", $name)) {
 
+        $imageName = null;
+        $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+        $maxSize = 400000; //bytes
+
+        if (isset($_FILES['file'])) { //s'il y a bien une image et pas d'erreur
+            $tmpName = $_FILES['file']['tmp_name'];
+            $originalName = $_FILES['file']['name'];
+            $size = $_FILES['file']['size']; //bytes
+            $error = $_FILES['file']['error'];
+
+            $tabExtension = explode('.', $originalName); // slpit le nom de l'image en tableau
+            $extension = strtolower(end($tabExtension)); // dernier element du tableau (end) en minuscule(Jpg,JPG) . end(array)prend un tableau en param
+
+            // nom unique pour éviter les conflits et problèmes de cache
+            $imageName = uniqid('', true) . "-" . basename($originalName); //uniqid = id unique basé sur le temps actuel en ms + nom de l'image sans path
+            $uploadDir = "upload/"; //répertoire doit exister + accés écriture
+            $uploadFile = $uploadDir . $imageName;
+
+            //déplace fichier dans le répertoire de dest
+            if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
+                // erreur si fichier pas déplacé
+                if (!move_uploaded_file($tmpName, $uploadFile)) {
+                    $imageName = null;
+                    message("Erreur lors du telechargement de l'image.");
+                }
+            }
+        }
+
         $product = [
             'name' => $name,
             'qtt' => $qtt,
             'price' => $price,
-            'total' => $price * $qtt
+            'total' => $price * $qtt,
+            'imageName' => isset($imageName) ? $imageName : null,
         ];
 
         $_SESSION['products'][] = $product; //rajoute le produit au tableau

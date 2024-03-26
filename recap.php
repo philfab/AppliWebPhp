@@ -37,31 +37,37 @@ if (isset($_SESSION['message'])) {
             $totalGeneral = 0;
 
             foreach ($_SESSION['products'] as $index => $product) {
-                echo
-                "<tr>",
-                "<td>" . $index . "</td>",
-                "<td>" . $product['name'] . "</td>",
-                "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€", "</td>",
+                echo "<tr>",
+                "<td>" . $index . "</td>";
+
+                if (!empty($product['imageName'])) {
+                    echo "<td><img src='upload/" . $product['imageName']  . $product['name'] . "</td>";
+                } else {
+                    echo "<td>" . $product['name'] . "</td>";
+                }
+
+                echo "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                 "<td>" . $product['qtt'] .
                     "<form class='form-qtt' action='traitement.php?action=down-qtt' method='post'>
-                      <input type='hidden' name='id' value='" . $index . "'>
-                      <button class='button-qtt' type='submit' name='submit'>-</button>
-                   </form>
-                   <form class='form-qtt' action='traitement.php?action=up-qtt' method='post'>
-                     <input type='hidden' name='id' value='" . $index . "'>
-                     <button class='button-qtt'type='submit' name='submit'>+</button>
-                   </form>"  .
-                    "</td>",
-                "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€", "</td>",
+                            <input type='hidden' name='id' value='" . $index . "'>
+                            <button class='button-qtt' type='submit' name='submit'>-</button>
+                        </form>
+                        <form class='form-qtt' action='traitement.php?action=up-qtt' method='post'>
+                            <input type='hidden' name='id' value='" . $index . "'>
+                            <button class='button-qtt' type='submit' name='submit'>+</button>
+                        </form>
+                     </td>",
+                "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                 "<td>
-                <form action='traitement.php?action=delete' method='post'>
-                  <input type='hidden' name='id' value='" . $index . "'>
-                  <button class='bt-suppr' type='submit' name='submit'>Supprimer</button>
-                </form>
-            </td>",
+                        <form action='traitement.php?action=delete' method='post'>
+                            <input type='hidden' name='id' value='" . $index . "'>
+                            <button class='bt-suppr' type='submit' name='submit'>Supprimer</button>
+                        </form>
+                     </td>",
                 "</tr>";
                 $totalGeneral += $product['total'];
             }
+
             echo
             "<tr>",
 

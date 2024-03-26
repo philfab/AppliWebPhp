@@ -78,7 +78,7 @@ a:active {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 500px;
+    max-width: 1000px;
     min-width: 200px;
     background-color: rgb(211, 211, 211);
     border-radius: 10px;
@@ -166,4 +166,10 @@ td {
     cursor: pointer;
     margin: 5px;
     font-size: 15px;
+}
+
+img {
+   width : 50px; 
+   height : auto; 
+   margin-right : 10px
 }
