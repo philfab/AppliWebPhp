@@ -26,6 +26,7 @@ if (isset($_SESSION['message'])) {
             "<thead>",
             "<tr>",
             "<th>#</th>",
+            "<th>Miniature</th>",
             "<th>Nom</th>",
             "<th>Prix</th>",
             "<th>Quantité</th>",
@@ -40,13 +41,14 @@ if (isset($_SESSION['message'])) {
                 echo "<tr>",
                 "<td>" . $index . "</td>";
 
+                echo "<td>";
                 if (!empty($product['imageName'])) {
-                    echo "<td><img src='upload/" . $product['imageName']  . $product['name'] . "</td>";
-                } else {
-                    echo "<td>" . $product['name'] . "</td>";
+                    echo "<img src='upload/" . $product['imageName'] . "' alt='" . $product['name'] . "'>";
                 }
+                echo "</td>";
 
-                echo "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
+                echo "<td>" . $product['name'] . "</td>",
+                "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                 "<td>" . $product['qtt'] .
                     "<form class='form-qtt' action='traitement.php?action=down-qtt' method='post'>
                             <input type='hidden' name='id' value='" . $index . "'>
@@ -68,10 +70,11 @@ if (isset($_SESSION['message'])) {
                 $totalGeneral += $product['total'];
             }
 
+
             echo
             "<tr>",
 
-            "<td class='td-clear' colspan=4> Total général : </td>",
+            "<td class='td-clear' colspan=5> Total général : </td>",
             "<td><strong>" . number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€</strong></td>",
             "<td>
              <form action='traitement.php?action=clear' method='post'>
